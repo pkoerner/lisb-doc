@@ -6,6 +6,7 @@
             :dependencies [[org.clojure/clojure "1.11.3"]
                            [ring/ring-devel "1.12.1"]
                            [compojure "1.7.1"]
+                           [org.clojars.pkoerner/lisb "0.0.6-SNAPSHOT"]
                            [ring-server "0.5.0"]
                            [com.rpl/specter "1.1.4"]
                            [cryogen-flexmark "0.1.5"]

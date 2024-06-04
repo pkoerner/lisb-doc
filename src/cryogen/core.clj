@@ -2,7 +2,19 @@
   (:require [cryogen-core.compiler :refer [compile-assets-timed]]
             [cryogen-core.plugins :refer [load-plugins]]
             [com.rpl.specter :as s]
-            ))
+            [lisb.core :as lc])
+  (:use [lisb.translation.util])
+  )
+
+(defn repl [form]
+  (println form)
+  (str "user=> " (str form) "   ;; B: " (try (lisb->b form) (catch Exception e "lol, broken")) \newline
+       (str (try (lc/eval-ir-formula (lisb->ir form))
+                 (catch Exception e "lol, broken"))) \newline))
+
+(defn get-forms [content-field]
+  (apply str 
+       (map repl (read-string (str \[ (first content-field) \])))))
 
 (defn replace-lisb-blocks
   [article _params]
@@ -13,10 +25,8 @@
             (let [res  (s/transform [(s/walker #(and (map? %) (= (:tag %) :code) (= "lisb" (get-in % [:attrs :class])))) ]
                                     (fn [m] (-> m 
                                                 (assoc-in [:attrs :class] "clojure")
-                                                (update :content (fn [s]
-                                                                   (map (fn [call]
-                                                                          (str (list* call) " => " (eval call) \newline)) 
-                                                                        (read-string (str \[ (first s) \])))))))
+                                                (update :content 
+                                                        get-forms)))
                                     content-dom)]
               (println res)
               res
