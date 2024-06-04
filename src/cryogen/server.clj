@@ -10,6 +10,7 @@
     [cryogen-core.compiler :refer [compile-assets-timed]]
     [cryogen-core.config :refer [resolve-config]]
     [cryogen-core.io :refer [path]]
+    [cryogen.postprocessor :refer [replace-lisb-blocks]]
     [clojure.string :as string])
   (:import (java.io File)))
 
@@ -17,9 +18,10 @@
 
 (def extra-config-dev
   "Add dev-time configuration overrides here, such as `:hide-future-posts? false`"
-  {})
+  {:update-article-fn replace-lisb-blocks })
 
 (defn init [& fast?]
+
   (load-plugins)
   (compile-assets-timed extra-config-dev)
   (let [ignored-files (-> @resolved-config :ignored-files)]
