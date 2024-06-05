@@ -27,6 +27,7 @@
 (defn replace-lisb-blocks
   [article _params]
   (println article)
+  (use 'lisb.translation.util)
   (update article
           :content-dom
           (fn [content-dom]
