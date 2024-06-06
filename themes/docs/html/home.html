@@ -1,0 +1,39 @@
+{% extends "/html/base.html" %}
+{%block subtitle %}: Simple static sites{% endblock %}
+{% block content %}
+<div id="perks" class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <h2>Easy</h2>
+        <p>The B method is right there, as a library. So is a constraint solver and animator.</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <h2>Your DSL</h2>
+        <p>Create your own abstractions that you need for your domain.</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <h2>Create Tools</h2>
+        <p>Whether you want to generate specifications from data or transform existing machines,
+           lisb provides you the power of Clojure for meta-programming.</p>
+    </div>
+</div>
+
+<h2>Get Started</h2>
+
+<div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-6 instructions">
+        <ol>
+            <li>Install <a href="https://leiningen.org/">Leiningen</a> or <a href="https://clojure.org/guides/deps_and_cli">Clojure CLI</a></li>
+            <li>Add lisb to your dependencies:
+                <a href="https://clojars.org/org.clojars.pkoerner/lisb"><img src="https://img.shields.io/clojars/v/org.clojars.pkoerner/lisb.svg?include_prereleases" /></a></li>
+            <li>Check out some examples and tutorials, and have at it!</li>
+        </ol>
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-6">
+            <p class="title">Quick Start Guide</p><pre class="clojure"><code class="clojure"><span>user=&gt; (use 'lisb.core 'lisb.translation.util)</span>
+<span>user=&gt; (eval-ir-formula</span>
+<span>         (b (and (member? :x (range 101 200))</span>
+<span>            (exists [:y] (= :x (* :y :y))))))</span>
+{"x" 121, "y" -11}</code></pre>
+    </div>
+</div>
+{% endblock %}

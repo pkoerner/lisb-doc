@@ -1,24 +1,24 @@
 {:site-title                   "AmateurB"
- :author                       "Philipp Körner"
+ :author                       "pkoerner"
  :description                  "This B is awesome"
  :site-url                     "https://prob.hhu.de/"
- :post-root                    "posts"
- :page-root                    "pages"
- :post-root-uri                "posts-output"
- :page-root-uri                "pages-output"
- :tag-root-uri                 "tags-output"
- :author-root-uri              "authors-output"
+ :post-root                    "news"
+ :page-root                    "docs"
+ ;:post-root-uri                "posts-output"
+ ;:page-root-uri                "pages-output"
+ ;:tag-root-uri                 "tags-output"
+ ;:author-root-uri              "authors-output"
  :public-dest                  "public"
- :blog-prefix                  "/blog"
+ :blog-prefix                  ""
  :rss-name                     "feed.xml"
- :rss-filters                  ["cryogen"]
+ :rss-filters                  []
  :recent-posts                 3
  :post-date-format             "yyyy-MM-dd"
  :archive-group-format         "yyyy MMMM"
  :sass-src                     []
- :sass-path                    "sass"
- :theme                        "blue"
- :resources                    ["img"]
+ ;:sass-path                    "sass"
+ :theme                        "docs"
+ :resources                    []
  :keep-files                   [".git"]
  :disqus?                      false
  :disqus-shortname             ""
@@ -26,7 +26,7 @@
  :previews?                    false
  :posts-per-page               5
  :blocks-per-preview           2
- :clean-urls                   :trailing-slash
+ :clean-urls                   :dirty
  :collapse-subdirs?            false
  :hide-future-posts?           true
  :klipse                       {}
