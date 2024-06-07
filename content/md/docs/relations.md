@@ -70,12 +70,12 @@ The operators below describes the set of all possible relations (which are total
 
 ```lisb
 (<| #{1} #{(|-> 1 2) (|-> 1 3) (|-> 2 2)})
-(domain-restriction #{(|-> 1 2) (|-> 1 3) (|-> 2 2)})
+(domain-restriction #{1} #{(|-> 1 2) (|-> 1 3) (|-> 2 2)})
 ```
 
 ```lisb
 (<<| #{1} #{(|-> 1 2) (|-> 1 3) (|-> 2 2)})
-(domain-substraction #{(|-> 1 2) (|-> 1 3) (|-> 2 2)})
+(domain-subtraction #{1} #{(|-> 1 2) (|-> 1 3) (|-> 2 2)})
 ```
 
 ```lisb
