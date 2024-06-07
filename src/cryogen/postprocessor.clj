@@ -4,8 +4,8 @@
   (:use [lisb.translation.util]))
   
 (defn repl [form]
-  (println form)
-  (str "user=> " (str form) "   ;; B: " (try (lisb.translation.util/lisb->b form) (catch Exception e "lol, broken")) \newline
+  #_(println form)
+  (str "lisb=> " (str form) "   ;; B: " (try (lisb.translation.util/lisb->b form) (catch Exception e "lol, broken")) \newline
        (str (try (lc/eval-ir-formula (lisb->ir form))
                  (catch Exception e "lol, broken"))) \newline))
 
@@ -14,19 +14,19 @@
        (map repl (read-string (str \[ (first content-field) \])))))
 
 (defn repl-b [form]
-  (println :XXX/b form)
+  #_(println :XXX/b form)
   (str "B => " (str form) \newline
        (str (try (lc/eval-ir-formula (b-expression->ir form))
                  (catch Exception e "lol, broken"))) \newline) )
 
 (defn get-forms-b [content-field]
-  (println content-field)
+  #_(println content-field)
   (apply str 
        (map repl-b (clojure.string/split-lines (first content-field)))))
 
 (defn replace-lisb-blocks
   [article _params]
-  (println article)
+  #_(println article)
   (use 'lisb.translation.util)
   (update article
           :content-dom
@@ -40,7 +40,7 @@
                                                 (assoc-in [:attrs :class] "B") (update :content get-forms-b)))
                                     res)
                   ]
-              (println res)
+              #_(println res)
               res
               ))))
 
