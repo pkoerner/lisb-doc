@@ -94,3 +94,26 @@ natural1-set
 (pi [:x] (member? :x (range 1 10)) (* :x :x))
 ```
 
+
+## Reals
+
+### Create
+
+```lisb
+3.14
+(real 3)
+```
+
+### Set Constants
+
+```lisb
+real-set
+float-set
+```
+
+### Rounding
+
+```lisb
+(floor 3.14)
+(ceil 3.14)
+```
