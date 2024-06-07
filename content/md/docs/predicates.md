@@ -49,3 +49,9 @@ It is automatically re-written.
 (exists [:x :y] (< :x 10 :y))
 ```
 
+## Conversion to Boolean
+
+```lisb
+(pred->bool (= 1 1))
+(pred->bool (= 1 2))
+```

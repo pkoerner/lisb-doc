@@ -6,7 +6,11 @@
 (defn repl [form]
   #_(println form)
   (str "lisb=> " (str form) "   ;; B: " (try (lisb.translation.util/lisb->b form) (catch Exception e "lol, broken")) \newline
-       (str (try (lc/eval-ir-formula (lisb->ir form))
+       (str (try (let [res (lc/eval-ir-formula (lisb->ir form))]
+                   (case res
+                     {} "{} ;; TRUE, no bindings"
+                     nil "nil ;; FALSE"
+                     res))
                  (catch Exception e "lol, broken"))) \newline))
 
 (defn get-forms [content-field]
