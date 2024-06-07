@@ -17,6 +17,11 @@ It contains only tuples with the first element in the first base set, and the se
 (|-> 1 "foo")
 ```
 
+```b-expr
+1|->2
+(1,2)
+```
+
 ## Sets of Relations
 
 The operators below describes the set of all possible relations (which are total, surjective or both total and surjective):
@@ -105,12 +110,12 @@ The operators below describes the set of all possible relations (which are total
 ```lisb
 (>< #{(|-> 1 2) (|-> 2 3) (|-> 3 4)} #{(|-> 2 6) (|-> 4 4)})
 (direct-product #{(|-> 1 2) (|-> 2 3) (|-> 3 4)} #{(|-> 2 6) (|-> 4 4)})
-#{[(|-> :x (|-> :y :z))] | (and (member? (|-> :x :y)  #{(|-> 1 2) (|-> 2 3) (|-> 3 4)}) (member? (|-> :x :z) #{(|-> 2 6) (|-> 4 4)}))} ;; according to wiki
+#{[:x :y :z] | (and (member? (|-> :x :y)  #{(|-> 1 2) (|-> 2 3) (|-> 3 4)}) (member? (|-> :x :z) #{(|-> 2 6) (|-> 4 4)}))} ;; according to wiki
 ```
 
 ```lisb
 (composition #{(|-> 1 2) (|-> 2 3) (|-> 3 4)} #{(|-> 2 6) (|-> 4 4)})
-#{[(|-> :x :y)] | (and (member? (|-> :x :z)  #{(|-> 1 2) (|-> 2 3) (|-> 3 4)}) (member? (|-> :z :y) #{(|-> 2 6) (|-> 4 4)}))} ;; according to wiki
+#{[:x :y] | (exists [:z] (and (member? (|-> :x :z)  #{(|-> 1 2) (|-> 2 3) (|-> 3 4)}) (member? (|-> :z :y) #{(|-> 2 6) (|-> 4 4)})))} ;; according to wiki
 ```
 
 ```lisb
