@@ -2,7 +2,7 @@
  :layout :page
  :page-index 5
  :navbar? false
- :section "Syntax Overview"
+ :section "B Syntax Overview"
  :toc true}
 
 ## Literals
