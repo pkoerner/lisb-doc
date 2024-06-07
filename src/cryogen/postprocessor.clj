@@ -28,7 +28,7 @@
 
 
 (defn lisb-b' [form]
-  (str "lisb=> " (str form) \newline
+  (str "lisb2B=> " (str form) \newline
        (str (try (lisb->b (read-string form))
                  (catch Exception e "lol, broken"))) \newline) )
 

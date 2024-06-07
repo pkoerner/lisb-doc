@@ -5,6 +5,10 @@
  :section "B Syntax Overview"
  :toc true}
 
+Substitutions change the program state.
+As they do not have a value, we cannot execute them.
+Instead, we provide some examples and give the B representation instead.
+
 ## Empty Assignment
 
 ```pplisb
