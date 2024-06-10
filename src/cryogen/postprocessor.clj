@@ -2,7 +2,14 @@
   (:require [com.rpl.specter :as s]
             [lisb.core :as lc])
   (:use [lisb.translation.util]))
-  
+
+(defn wrap-exception->nil [f]
+  (fn [& args] (try (apply f args) (catch Exception _ nil))))
+
+(defn b-something->ir [bstr]
+  (or (some identity ((apply juxt (map wrap-exception->nil [b-predicate->ir b-expression->ir b-formula->ir b->ir b-substitution->ir b-operation->ir b-machine-clause->ir])) bstr))
+      "ha-Ha broken"))
+
 (defn repl [form]
   #_(println form)
   (str "lisb=> " (str form) "   ;; B: " (try (lisb.translation.util/lisb->b form) (catch Exception e "lol, broken")) \newline
@@ -19,7 +26,11 @@
 
 (defn repl-b [form]
   (str "B => " (str form) \newline
-       (str (try (lc/eval-ir-formula (b-expression->ir form))
+       (str (try (let [res (lc/eval-ir-formula (b-something->ir #_b-expression->ir form))]
+                   (case res
+                     {} "TRUE"
+                     nil "FALSE"
+                     res))
                  (catch Exception e "lol, broken"))) \newline) )
 
 (defn get-forms-b [content-field]
@@ -47,7 +58,7 @@
                        (s/transform [(s/walker #(and (map? %) (= (:tag %) :code) (= "lisb" (get-in % [:attrs :class]))))]
                                     (fn [m] (-> m 
                                                 (assoc-in [:attrs :class] "clojure") (update :content get-forms))))
-                       (s/transform [(s/walker #(and (map? %) (= (:tag %) :code) (= "b-expr" (get-in % [:attrs :class]))))]
+                       (s/transform [(s/walker #(and (map? %) (= (:tag %) :code) (#{"B" "b-expr"} (get-in % [:attrs :class]))))]
                                     (fn [m] (-> m 
                                                 (assoc-in [:attrs :class] "B") (update :content get-forms-b))))
                        (s/transform [(s/walker #(and (map? %) (= (:tag %) :code) (= "pplisb" (get-in % [:attrs :class]))))]
