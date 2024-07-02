@@ -10,6 +10,12 @@
   (or (some identity ((apply juxt (map wrap-exception->nil [b-predicate->ir b-expression->ir b-formula->ir b->ir b-substitution->ir b-operation->ir b-machine-clause->ir])) bstr))
       "ha-Ha broken"))
 
+(defn repl-clj [form]
+  (str "clj=> " (str form) \newline
+       (pr-str (try (let [res (eval form)]
+                      res)
+                 (catch Exception e "lol, broken"))) \newline))
+
 (defn repl [form]
   #_(println form)
   (str "lisb=> " (str form) "   ;; B: " (try (lisb.translation.util/lisb->b form) (catch Exception e "lol, broken")) \newline
@@ -19,6 +25,10 @@
                      nil "nil ;; FALSE"
                      res))
                  (catch Exception e "lol, broken"))) \newline))
+
+(defn get-forms-clj [content-field]
+  (apply str 
+       (map repl-clj (read-string (str \[ (first content-field) \])))))
 
 (defn get-forms [content-field]
   (apply str 
@@ -55,6 +65,9 @@
           :content-dom
           (fn [content-dom]
             (let [res (->> content-dom  
+                       (s/transform [(s/walker #(and (map? %) (= (:tag %) :code) (= "clj" (get-in % [:attrs :class]))))]
+                                    (fn [m] (-> m 
+                                                (assoc-in [:attrs :class] "clojure") (update :content get-forms-clj))))
                        (s/transform [(s/walker #(and (map? %) (= (:tag %) :code) (= "lisb" (get-in % [:attrs :class]))))]
                                     (fn [m] (-> m 
                                                 (assoc-in [:attrs :class] "clojure") (update :content get-forms))))
