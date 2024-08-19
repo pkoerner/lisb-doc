@@ -91,7 +91,7 @@ The operators below describes the set of all possible relations (which are total
 ## Inverse
 
 ```lisb
-(inverse #{(|-> 1 2) (|-> 1 3) (|-> 2 2)} #{2})
+(inverse #{[1 -> 2] [1 -> 3] [2 -> 2]})
 ```
 
 ## Relational Image
