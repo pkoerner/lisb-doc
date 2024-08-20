@@ -9,7 +9,7 @@
  ;:tag-root-uri                 "tags-output"
  ;:author-root-uri              "authors-output"
  :public-dest                  "public"
- :blog-prefix                  ""
+ :blog-prefix                  "/lisb-doc"
  :rss-name                     "feed.xml"
  :rss-filters                  []
  :recent-posts                 3
