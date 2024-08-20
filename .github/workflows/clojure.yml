@@ -1,0 +1,30 @@
+name: Clojure CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: lein deps
+    - name: Generate HTML pages
+      run: lein run
+    - name: Pack files
+      run: tar -cvf github-pages -C public/ .
+    - uses: actions/upload-artifact@v4
+      with:
+        name: github-pages
+        path: github-pages
+    - uses: actions/deploy-pages@v4
