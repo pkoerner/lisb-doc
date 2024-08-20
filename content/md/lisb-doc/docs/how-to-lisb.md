@@ -40,7 +40,7 @@ The `lisb.translations.util` namespace offers:
 - Functions to switch between representations, i.e.,
   the internal DSL, the IR, ProB's AST and plain B strings.
 
-## Changing Reprentations
+## Changing Representations
 
 
 ### From B Strings to the lisb DSL
