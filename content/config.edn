@@ -1,7 +1,7 @@
 {:site-title                   "AmateurB"
  :author                       "pkoerner"
- :description                  "This B is awesome"
- :site-url                     "https://prob.hhu.de/"
+ :description                  "Documentation for lisb and examples using the B language."
+ :site-url                     "https://pkoerner.github.io/lisb-doc"
  :post-root                    "news"
  :page-root                    "docs"
  ;:post-root-uri                "posts-output"
@@ -26,7 +26,7 @@
  :previews?                    false
  :posts-per-page               5
  :blocks-per-preview           2
- :clean-urls                   :dirty
+ :clean-urls                   :trailing-slash
  :collapse-subdirs?            false
  :hide-future-posts?           true
  :klipse                       {}

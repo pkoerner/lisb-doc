@@ -1,6 +1,6 @@
 {:title "lisb Tutorial"
  :layout :page
- :page-index 100}
+ :page-index 0}
 
 
 ## Important Disclaimer
@@ -105,7 +105,7 @@ lisb gets much more useful as we can evaluate formulas using ProB.
 
 ```clj
 (use 'lisb.core)
-(eval-ir-formula (b (+ 1 2)))
+(eval-ir-formula' (b (+ 1 2)))
 ```
 
 If the formula is an expression, we get the value it evaluates to.
@@ -113,6 +113,6 @@ There might also be open variables in predicates.
 Then, we get a map from variables to values that make a solution that satisfies the formula.
 
 ```clj
-(eval-ir-formula (b (and (= :x 42) (< :x :y))))
+(eval-ir-formula' (b (and (= :x 42) (< :x :y))))
 ```
 
