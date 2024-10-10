@@ -4,5 +4,5 @@
 
 This is the page where I talk about B and lisb.
 
-Start here:
+You can start with the documentation in the sidebar, or read some blog posts (under "News" at the top)
 
