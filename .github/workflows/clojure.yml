@@ -17,6 +17,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install Leiningen on Ubuntu
+      run: sudo apt install -y leiningen
     - name: Install dependencies
       run: lein deps
     - name: Generate HTML pages
